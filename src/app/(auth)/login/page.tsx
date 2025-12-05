@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
+import type { Session } from "next-auth";
 
 import { LoginForm } from "./login-form";
 import { authOptions } from "@/lib/auth-options";
 
 export default async function LoginPage() {
-  const session = await getServerSession(authOptions);
-  if (session && "user" in session && (session as any).user?.role === "admin") {
+  const session = (await getServerSession(authOptions)) as Session | null;
+  if (session?.user?.role === "admin") {
     redirect("/admin");
   }
 
