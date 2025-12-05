@@ -32,6 +32,15 @@ const cleanString = (value: FormDataEntryValue | null) => {
   return text.length ? text : undefined;
 };
 
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9-]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-{2,}/g, "-");
+
 function parseCategory(formData: FormData): CategoryPayload {
   return categorySchema.parse({
     id: numberOrUndefined(formData.get("id")),
@@ -60,11 +69,14 @@ function parseMenuItem(formData: FormData): MenuItemPayload {
 
 function parseTable(formData: FormData): DiningTablePayload {
   const seatingCapacity = numberOrUndefined(formData.get("seatingCapacity"));
+  const rawSlug = String(formData.get("slug") ?? "");
+  const rawLabel = String(formData.get("label") ?? "");
+  const normalizedSlug = rawSlug ? slugify(rawSlug) : slugify(rawLabel);
 
   return diningTableSchema.parse({
     id: numberOrUndefined(formData.get("id")),
-    label: String(formData.get("label") ?? ""),
-    slug: String(formData.get("slug") ?? "").toLowerCase(),
+    label: rawLabel,
+    slug: normalizedSlug,
     seatingCapacity,
     notes: cleanString(formData.get("notes")),
     isActive: bool(formData.get("isActive")),
