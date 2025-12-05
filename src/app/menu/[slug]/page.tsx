@@ -35,6 +35,7 @@ const demoMenu: RenderCategory[] = [
     id: "demo-breakfast",
     name: "Kahvaltı Sofrası",
     description: "Kendi üretimimiz peynirler ve sıcak gözleme ile güne başlangıç.",
+    anchor: "category-kahvalti-sofrasi",
     items: [
       {
         id: "demo-breakfast-1",
@@ -50,6 +51,7 @@ const demoMenu: RenderCategory[] = [
     id: "demo-hot",
     name: "Sıcaklar",
     description: "Odun fırınından çıkan günlük yemekler",
+    anchor: "category-sicaklar",
     items: [
       {
         id: "demo-hot-1",
