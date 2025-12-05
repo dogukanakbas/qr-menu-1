@@ -1,4 +1,3 @@
-import type { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
 import { z } from "zod";
@@ -25,7 +24,7 @@ async function verifyPassword(input: string) {
   return input === adminPassword;
 }
 
-export const authOptions: NextAuthOptions = {
+export const authOptions = {
   pages: {
     signIn: "/login",
   },
