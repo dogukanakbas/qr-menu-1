@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
+import type { Session } from "next-auth";
 import { LogOut, Menu, QrCode, Settings } from "lucide-react";
 import { ReactNode } from "react";
 
@@ -8,7 +9,7 @@ import { authOptions } from "@/lib/auth-options";
 import { SignOutButton } from "./sign-out-button";
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
-  const session = await getServerSession(authOptions);
+  const session = (await getServerSession(authOptions)) as Session | null;
 
   if (session?.user?.role !== "admin") {
     redirect("/login");

@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { getServerSession } from "next-auth/next";
+import type { Session } from "next-auth";
 
 import { prisma } from "@/lib/prisma";
 import { authOptions } from "@/lib/auth-options";
@@ -15,7 +16,7 @@ import {
 } from "@/lib/validators";
 
 async function assertAdmin() {
-  const session = await getServerSession(authOptions);
+  const session = (await getServerSession(authOptions)) as Session | null;
   if (session?.user?.role !== "admin") {
     throw new Error("Bu işlem için yetkiniz yok.");
   }
