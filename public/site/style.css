@@ -165,3 +165,43 @@ html {
     object-fit: cover;
     object-position: center;
 }
+
+/* Misafirlerimiz Bolumu - Fotograf Esitleme */
+.chef-style-one .chef-thumb {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.chef-style-one .chef-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.chef-style-one .chef-thumb .info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(130, 106, 69, 0.95);
+    padding: 20px;
+    text-align: center;
+}
+
+.chef-style-one .chef-thumb .info h4 {
+    margin: 0 0 5px 0;
+    color: #fff;
+}
+
+.chef-style-one .chef-thumb .info h4 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.chef-style-one .chef-thumb .info span {
+    color: #fff;
+    font-size: 14px;
+}

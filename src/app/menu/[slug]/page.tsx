@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
@@ -133,18 +134,30 @@ export default async function TableMenuPage({ params }: { params: Promise<{ slug
     <main className="min-h-screen bg-gradient-to-b from-stone-100 via-white to-stone-50 px-4 py-10">
       <div className="mx-auto flex max-w-5xl flex-col gap-10">
         <header className="rounded-3xl border border-[var(--color-border)] bg-white/80 p-8 text-center shadow-sm backdrop-blur">
-          <p className="text-xs uppercase tracking-[0.5em] text-emerald-600">{restaurantName}</p>
-          <h1 className="mt-4 text-4xl font-semibold text-stone-900">Masaya hoş geldiniz</h1>
-          <p className="mt-2 text-sm font-semibold text-stone-500">Masa: {tableName}</p>
-          <p className="mt-4 text-base text-stone-600">
-            Menü QR kodu üzerinden ulaştığınız bu sayfadan sipariş notlarınızı hazırlayabilir, garsonunuza
-            ürünleri kolayca iletebilirsiniz.
-          </p>
+          <div className="mb-4">
+            <Image
+              src="/yoruklogo.jpeg"
+              alt="Gündüzbey Yörük Sofrası Logo"
+              width={120}
+              height={120}
+              className="mx-auto rounded-full object-cover"
+            />
+          </div>
+          <h1 className="text-4xl font-semibold text-stone-900">Gündüzbey Yörük Sofrası</h1>
+          <p className="mt-2 text-lg text-stone-600">Hoşgeldiniz</p>
         </header>
 
         <nav className="sticky top-0 z-10 -mx-6 flex flex-col gap-3 border-b border-stone-200 bg-gradient-to-b from-white/90 to-white px-6 py-4 shadow-sm backdrop-blur">
           <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-stone-400">Kategoriler</p>
+            <div className="flex items-center gap-4">
+              <Link 
+                href="/" 
+                className="text-xs font-semibold uppercase tracking-[0.4em] text-emerald-600 hover:text-emerald-700 transition-colors"
+              >
+                Ana Sayfa
+              </Link>
+              <p className="text-xs font-semibold uppercase tracking-[0.4em] text-stone-400">Kategoriler</p>
+            </div>
             <span className="text-xs text-stone-400">{renderCategories.length} bölüm</span>
           </div>
           <div className="flex snap-x gap-3 overflow-x-auto pb-1">
