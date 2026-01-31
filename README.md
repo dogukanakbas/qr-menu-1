@@ -1,4 +1,4 @@
-## Yörük Sofrası · QR Menü Sistemi
+## Mihrali Cafe · QR Menü Sistemi
 
 Restoran yöneticisinin kategorileri, ürünleri ve masa bazlı QR bağlantılarını tek panelden yönetebilmesi için hazırlanan Next.js tabanlı uygulama.
 
@@ -25,9 +25,9 @@ DATABASE_URL="file:./prisma/dev.db"
 NEXTAUTH_URL="http://localhost:4000"
 NEXT_PUBLIC_APP_URL="http://localhost:4000"
 NEXTAUTH_SECRET="rastgele-bir-deger"
-ADMIN_EMAIL="admin@yoruksofrasi.com"
+ADMIN_EMAIL="admin@mihralicafe.com"
 ADMIN_PASSWORD="sifre-veya-bcrypt-hashi"
-RESTAURANT_NAME="Yörük Sofrası"
+RESTAURANT_NAME="Mihrali Cafe"
 UPLOADTHING_SECRET="uploadthing-dashboarddaki-secret"
 UPLOADTHING_APP_ID="uploadthing-dashboarddaki-app-id"
 ```

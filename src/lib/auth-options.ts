@@ -58,7 +58,7 @@ export const authOptions = {
         return {
           id: "admin",
           email: process.env.ADMIN_EMAIL,
-          name: process.env.RESTAURANT_NAME ?? "Yörük Sofrası",
+          name: process.env.RESTAURANT_NAME ?? "Mihrali Cafe",
           role: "admin",
         };
       },

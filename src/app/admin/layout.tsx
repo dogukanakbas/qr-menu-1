@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import type { Session } from "next-auth";
-import { LogOut, Menu, QrCode, Settings } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { ReactNode } from "react";
 
 import { authOptions } from "@/lib/auth-options";
@@ -17,52 +17,22 @@ export default async function AdminLayout({ children }: { children: ReactNode })
 
   return (
     <div className="min-h-screen bg-stone-50">
-      <header className="border-b border-[var(--color-border)] bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-lg font-semibold text-stone-900">
-            {process.env.RESTAURANT_NAME ?? "Yörük Sofrası"} · Yönetici
+      <header className="border-b border-[var(--color-border)] bg-white/90 backdrop-blur sticky top-0 z-50">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
+          <Link href="/" className="text-base sm:text-lg font-semibold text-stone-900 truncate">
+            {process.env.RESTAURANT_NAME ?? "Mihrali Cafe"} · Yönetici
           </Link>
-          <div className="flex items-center gap-3 text-sm text-stone-500">
-            <span>Hoş geldiniz, {session.user?.name ?? "Yönetici"}</span>
+          <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-stone-500">
+            <span className="hidden sm:inline">Hoş geldiniz, {session.user?.name ?? "Yönetici"}</span>
             <SignOutButton>
               <LogOut className="size-4" />
-              Çıkış yap
+              <span className="hidden sm:inline">Çıkış yap</span>
             </SignOutButton>
           </div>
         </div>
       </header>
-      <div className="mx-auto grid min-h-[calc(100vh-65px)] max-w-6xl gap-6 px-6 py-10 md:grid-cols-[280px_1fr]">
-        <aside className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-sm">
-          <nav className="space-y-6">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-stone-400">Menü</p>
-              <ul className="mt-3 space-y-2 text-sm font-medium text-stone-600">
-                <li className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-emerald-700">
-                  <Menu className="size-4" /> Kategori & Ürünler
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-stone-400">Masalar</p>
-              <ul className="mt-3 space-y-2 text-sm font-medium text-stone-600">
-                <li className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-emerald-700">
-                  <QrCode className="size-4" /> QR Kodları
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-stone-400">
-                Ayarlar & Yardım
-              </p>
-              <ul className="mt-3 space-y-2 text-sm font-medium text-stone-600">
-                <li className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-stone-700">
-                  <Settings className="size-4" /> Sistem bilgisi
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </aside>
-        <section>{children}</section>
+      <div className="mx-auto min-h-[calc(100vh-65px)] max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
+        <section className="w-full">{children}</section>
       </div>
     </div>
   );

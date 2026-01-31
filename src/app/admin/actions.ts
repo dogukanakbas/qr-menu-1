@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import type { Session } from "next-auth";
 
@@ -43,10 +44,14 @@ const slugify = (value: string) =>
     .replace(/-{2,}/g, "-");
 
 function parseCategory(formData: FormData): CategoryPayload {
+  const iconUrl = cleanString(formData.get("iconUrl"));
+  const categoryImageUrl = cleanString(formData.get("categoryImageUrl"));
   return categorySchema.parse({
     id: numberOrUndefined(formData.get("id")),
     name: String(formData.get("name") ?? ""),
     description: cleanString(formData.get("description")),
+    iconUrl: iconUrl === "" ? undefined : iconUrl,
+    categoryImageUrl: categoryImageUrl === "" ? undefined : categoryImageUrl,
     sortOrder: Number(formData.get("sortOrder") ?? 0),
     isVisible: bool(formData.get("isVisible")),
   });
@@ -94,6 +99,8 @@ export async function upsertCategoryAction(formData: FormData) {
       data: {
         name: data.name,
         description: data.description,
+        iconUrl: data.iconUrl,
+        categoryImageUrl: data.categoryImageUrl,
         sortOrder: data.sortOrder,
         isVisible: data.isVisible,
       },
@@ -103,6 +110,8 @@ export async function upsertCategoryAction(formData: FormData) {
       data: {
         name: data.name,
         description: data.description,
+        iconUrl: data.iconUrl,
+        categoryImageUrl: data.categoryImageUrl,
         sortOrder: data.sortOrder,
         isVisible: data.isVisible,
       },
@@ -110,6 +119,8 @@ export async function upsertCategoryAction(formData: FormData) {
   }
 
   revalidatePath("/admin");
+  revalidatePath("/");
+  redirect("/admin");
 }
 
 export async function deleteCategoryAction(categoryId: number) {
@@ -117,6 +128,8 @@ export async function deleteCategoryAction(categoryId: number) {
   await prisma.menuItem.deleteMany({ where: { categoryId } });
   await prisma.category.delete({ where: { id: categoryId } });
   revalidatePath("/admin");
+  revalidatePath("/");
+  redirect("/admin");
 }
 
 export async function upsertMenuItemAction(formData: FormData) {
@@ -151,12 +164,16 @@ export async function upsertMenuItemAction(formData: FormData) {
   }
 
   revalidatePath("/admin");
+  revalidatePath("/");
+  redirect("/admin");
 }
 
 export async function deleteMenuItemAction(menuItemId: number) {
   await assertAdmin();
   await prisma.menuItem.delete({ where: { id: menuItemId } });
   revalidatePath("/admin");
+  revalidatePath("/");
+  redirect("/admin");
 }
 
 export async function upsertTableAction(formData: FormData) {
@@ -187,11 +204,15 @@ export async function upsertTableAction(formData: FormData) {
   }
 
   revalidatePath("/admin");
+  revalidatePath("/");
+  redirect("/admin");
 }
 
 export async function deleteTableAction(tableId: number) {
   await assertAdmin();
   await prisma.diningTable.delete({ where: { id: tableId } });
   revalidatePath("/admin");
+  revalidatePath("/");
+  redirect("/admin");
 }
 

@@ -23,22 +23,22 @@ export function ImageUploader({
   const [isUploading, setIsUploading] = useState(false);
 
   return (
-    <div className="space-y-2">
-      <label className="text-xs font-medium text-stone-500">{label}</label>
-      <div className="flex flex-col gap-3">
+    <div className="space-y-2 sm:space-y-2.5 min-w-0">
+      <label className="block text-xs sm:text-sm font-medium text-stone-700">{label}</label>
+      <div className="flex flex-col gap-2 sm:gap-3">
         <input
           name={name}
           type="url"
           value={value}
           placeholder={placeholder}
           onChange={(event) => setValue(event.target.value)}
-          className="w-full rounded-xl border border-stone-200 px-3 py-2 text-sm focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+          className="w-full rounded-lg sm:rounded-xl border border-stone-300 px-3 sm:px-4 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm text-stone-900 focus:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-100 bg-white placeholder:text-stone-400"
         />
         <UploadButton<OurFileRouter, "menuImage">
           endpoint="menuImage"
           appearance={{
             button:
-              "inline-flex items-center justify-center rounded-xl border border-dashed border-emerald-200 px-4 py-2 text-sm font-semibold text-emerald-700 transition hover:border-emerald-300",
+              "inline-flex items-center justify-center rounded-lg sm:rounded-xl border border-dashed border-emerald-300 px-3 sm:px-4 py-2 sm:py-2.5 lg:py-3 text-xs sm:text-sm font-semibold text-emerald-700 transition hover:border-emerald-400 hover:bg-emerald-50 w-full",
           }}
           onUploadProgress={() => setIsUploading(true)}
           onClientUploadComplete={(res) => {
@@ -54,10 +54,10 @@ export function ImageUploader({
             toast.error(error.message ?? "Yükleme başarısız");
           }}
         />
-        {isUploading && <p className="text-xs text-emerald-600">Yükleniyor...</p>}
+        {isUploading && <p className="text-xs sm:text-sm text-emerald-600 font-medium">Yükleniyor...</p>}
         {value && (
-          <p className="truncate text-xs text-stone-500">
-            Aktif URL: <span className="font-medium text-stone-700">{value}</span>
+          <p className="truncate text-xs text-stone-600 bg-stone-50 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg">
+            Aktif URL: <span className="font-medium text-stone-800 break-all">{value}</span>
           </p>
         )}
       </div>

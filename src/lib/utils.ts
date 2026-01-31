@@ -20,9 +20,9 @@ export function formatCurrency(value: number | string) {
 export function publicMenuUrl(slug: string) {
   const base = process.env.NEXT_PUBLIC_APP_URL ?? process.env.NEXTAUTH_URL ?? "";
   if (!base) {
-    return `/menu/${slug}`;
+    return `/`;
   }
-  return `${base.replace(/\/$/, "")}/menu/${slug}`;
+  return base.replace(/\/$/, "");
 }
 
 

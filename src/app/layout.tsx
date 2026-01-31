@@ -16,18 +16,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const restaurantName = process.env.RESTAURANT_NAME ?? "Yörük Sofrası";
+const restaurantName = process.env.RESTAURANT_NAME ?? "Mihrali Cafe";
 
 export const metadata: Metadata = {
   title: `${restaurantName} QR Menü`,
   description:
-    "Yörük Sofrası için kategori, ürün ve masa yönetimini kolaylaştıran QR menü sistemi.",
+    "Mihrali Cafe için kategori, ürün ve masa yönetimini kolaylaştıran QR menü sistemi.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-stone-50 text-stone-900`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}>
         <AuthSessionProvider>
           {children}
           <ToastProvider />

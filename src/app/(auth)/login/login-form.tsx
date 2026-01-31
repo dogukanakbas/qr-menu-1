@@ -58,7 +58,7 @@ export function LoginForm() {
         <input
           id="email"
           type="email"
-          placeholder="admin@yoruksofrasi.com"
+          placeholder="admin@mihralicafe.com"
           className="w-full rounded-xl border border-stone-200 px-4 py-3 text-sm outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100"
           disabled={isLoading}
           {...register("email")}

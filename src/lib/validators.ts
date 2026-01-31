@@ -4,6 +4,8 @@ export const categorySchema = z.object({
   id: z.number().int().positive().optional(),
   name: z.string().min(2, "Kategori adı en az 2 karakter olmalı"),
   description: z.string().max(240, "En fazla 240 karakter").optional(),
+  iconUrl: z.string().url("Geçerli bir görsel adresi girin").optional().or(z.literal("")),
+  categoryImageUrl: z.string().url("Geçerli bir görsel adresi girin").optional().or(z.literal("")),
   isVisible: z.boolean(),
   sortOrder: z.number().int().min(0, "Sıra değeri 0 veya daha büyük olmalı"),
 });
