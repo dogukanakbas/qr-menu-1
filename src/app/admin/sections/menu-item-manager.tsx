@@ -122,7 +122,7 @@ export function MenuItemManager({ categories }: Props) {
                 )}
                 {category.items.map((item) => (
                   <details key={item.id} className="overflow-hidden rounded-xl sm:rounded-2xl border-2 border-stone-300 bg-white shadow-md hover:shadow-lg transition-all w-full min-w-0">
-                    <summary className="flex cursor-pointer flex-row items-center justify-between gap-3 sm:gap-4 rounded-xl sm:rounded-2xl px-4 sm:px-6 lg:px-7 py-4 sm:py-5 lg:py-6 hover:bg-stone-100 transition-colors border-b-2 border-stone-300">
+                    <summary className="flex cursor-pointer flex-row flex-wrap items-center justify-between gap-3 sm:gap-4 rounded-xl sm:rounded-2xl px-4 sm:px-6 lg:px-7 py-4 sm:py-5 lg:py-6 hover:bg-stone-100 transition-colors border-b-2 border-stone-300">
                       <div className="flex-1 min-w-0 pr-2 sm:pr-4">
                         <p className="font-bold text-stone-900 text-base sm:text-lg lg:text-xl break-words whitespace-normal leading-tight">{item.name}</p>
                       </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { LucideIcon, Star as StarIcon, Heart, ChevronLeft, ChevronRight } from "lucide-react";
+import { LucideIcon, Star as StarIcon, Heart, ChevronLeft, ChevronRight, Instagram, Facebook, Phone } from "lucide-react";
 
 import { formatCurrency } from "@/lib/utils";
 import { getCategoryIcon } from "./page";
@@ -30,6 +30,12 @@ type RenderCategory = {
 type Props = {
   categories: RenderCategory[];
 };
+
+const SOCIAL_LINKS = [
+  { href: "https://instagram.com/mihralicafe", label: "Instagram", icon: Instagram },
+  { href: "https://facebook.com/mihralicafe", label: "Facebook", icon: Facebook },
+  { href: "tel:+902122222222", label: "Ara", icon: Phone },
+];
 
 export function CategoryCards({ categories }: Props) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -231,6 +237,8 @@ export function CategoryCards({ categories }: Props) {
   useEffect(() => {
     if (!featuredCategory || featuredCategory.items.length <= 1) return;
     if (!carouselRef.current) return;
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    if (isMobile) return; // Mobilde otomatik kaydırmayı kapat: animasyon kırılması önlenir.
 
     const container = carouselRef.current;
     let userInteracted = false;
@@ -398,6 +406,28 @@ export function CategoryCards({ categories }: Props) {
                     unoptimized
                     sizes="(max-width: 640px) 560px, (max-width: 768px) 700px, (max-width: 1024px) 840px, 1000px"
                   />
+                </div>
+              </div>
+              <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-yellow-100">
+                <span className="inline-flex items-center gap-2 rounded-full bg-yellow-500/10 border border-yellow-400/40 px-3 py-1.5 font-semibold text-yellow-100">
+                  Not: Her masada fix çerez olacaktır.
+                </span>
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  {SOCIAL_LINKS.map((link) => {
+                    const Icon = link.icon;
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target={link.href.startsWith("http") ? "_blank" : undefined}
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/30 px-3 py-1.5 font-semibold text-white hover:bg-white/20 transition"
+                      >
+                        <Icon className="w-4 h-4" />
+                        {link.label}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

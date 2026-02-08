@@ -21,6 +21,9 @@ export function TableManager({ tables }: Props) {
           Her masa için benzersiz bir slug belirleyin. Oluşturulan bağlantıyı çıktı alıp QR olarak
           masaya yerleştirin.
         </p>
+        <p className="inline-flex w-fit items-center gap-2 rounded-full bg-amber-50 px-3 py-1.5 text-xs sm:text-sm font-semibold text-amber-800 border border-amber-200">
+          Not: Her masada fix çerez olacaktır.
+        </p>
       </div>
       <div className="grid gap-4 sm:gap-6 lg:gap-8 grid-cols-1 xl:grid-cols-[minmax(300px,360px)_1fr]">
         <div className="rounded-xl sm:rounded-2xl border border-dashed border-stone-200 p-4 sm:p-5 bg-stone-50/50">
