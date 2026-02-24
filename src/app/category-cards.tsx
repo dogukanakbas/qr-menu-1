@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { LucideIcon, Star as StarIcon, Heart, ChevronLeft, ChevronRight, Instagram, Facebook, Phone } from "lucide-react";
+import { LucideIcon, Star as StarIcon, Heart, ChevronLeft, ChevronRight, Instagram, Phone } from "lucide-react";
 
 import { formatCurrency } from "@/lib/utils";
 import { getCategoryIcon } from "./page";
@@ -32,9 +32,8 @@ type Props = {
 };
 
 const SOCIAL_LINKS = [
-  { href: "https://instagram.com/mihralicafe", label: "Instagram", icon: Instagram },
-  { href: "https://facebook.com/mihralicafe", label: "Facebook", icon: Facebook },
-  { href: "tel:+902122222222", label: "Ara", icon: Phone },
+  { href: "https://www.instagram.com/mihrali.cafe?igsh=MWJyMXU4dmdrYXR3dQ%3D%3D&utm_source=qr", label: "Instagram", icon: Instagram },
+  { href: "tel:+905071692766", label: "Ara", icon: Phone },
 ];
 
 export function CategoryCards({ categories }: Props) {
