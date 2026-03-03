@@ -408,9 +408,6 @@ export function CategoryCards({ categories }: Props) {
                 </div>
               </div>
               <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3 text-xs sm:text-sm text-yellow-100">
-                <span className="inline-flex items-center gap-2 rounded-full bg-yellow-500/10 border border-yellow-400/40 px-3 py-1.5 font-semibold text-yellow-100">
-                  Not: Her masada fix çerez olacaktır.
-                </span>
                 <div className="flex flex-wrap items-center justify-center gap-2">
                   {SOCIAL_LINKS.map((link) => {
                     const Icon = link.icon;
